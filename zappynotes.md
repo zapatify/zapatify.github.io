@@ -25,7 +25,7 @@ Comprehensive Note-Taking Application
 ZappyNotes is a full-featured note-taking application designed as a comprehensive alternative to Evernote. It provides a robust platform for organizing thoughts, documents, and ideas with a flexible three-tier subscription model.
 
 **Live Demo:** I'm moving off Heroku.  As soon as I do, I'll bring this back  
-**GitHub:** https://github.com/zapatify/zappynotes
+**GitHub:** [https://github.com/zapatify/zappynotes](https://github.com/zapatify/zappynotes)
 
 ## Key Features
 

@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 
-gem "jekyll", "~> 4.4.1" # installed by `gem jekyll`
-# gem "webrick"        # required when using Ruby >= 3 and Jekyll <= 4.2.2
+gem "jekyll", "~> 4.3.4"
+gem "just-the-docs", "0.10.0"
 
-gem "just-the-docs", "0.10.1" # pinned to the current release
-# gem "just-the-docs"        # always download the latest release
+# Required for GitHub Pages
+gem "webrick", "~> 1.8"
+
+group :jekyll_plugins do
+  gem "jekyll-seo-tag", "~> 2.8"
+end

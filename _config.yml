@@ -1,10 +1,13 @@
-title: The Zapata Pages
-description: Engineering leader with expertise in Ruby on Rails, fintech, trivia, baseball and scalable architectures
+title: Rich Zapata
+description: Full-stack engineering leader with expertise in Ruby on Rails, fintech, and scalable architectures
 theme: just-the-docs
 
 url: https://zapatify.github.io
 
 # Color scheme - you can change this to: light, dark, or custom
+# Google Analytics
+ga_tracking_id: G-CZ2S5FK8TE
+
 color_scheme: light
 
 # Enable search
@@ -28,6 +31,6 @@ back_to_top_text: "Back to top"
 # External links
 aux_links:
   GitHub Profile: "https://github.com/zapatify"
-  LinkedIn: "https://www.linkedin.com/in/zapatar/"
+  LinkedIn: "#" # Add your LinkedIn URL here
 
 aux_links_new_tab: true

@@ -5,8 +5,6 @@ theme: just-the-docs
 url: https://zapatify.github.io
 
 # Color scheme - you can change this to: light, dark, or custom
-# Google Analytics
-ga_tracking_id: G-CZ2S5FK8TE
 
 color_scheme: light
 

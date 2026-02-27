@@ -7,7 +7,7 @@ nav_order: 7
 # Voyager Zulu Time
 {: .no_toc }
 
-A real-time clock for the furthest human-made object in existence.
+A [real-time clock](#live-clock) for the furthest human-made object in existence.
 {: .fs-6 .fw-300 }
 
 ---

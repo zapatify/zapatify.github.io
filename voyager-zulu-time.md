@@ -22,17 +22,21 @@ A [real-time clock](#live-clock) for the furthest human-made object in existence
 
 ## What Is This?
 
-Voyager 1 has been hurtling through space since September 5, 1977. It's now over 160 AU from Earth — so far away that a radio signal traveling at the speed of light takes more than 22 hours to reach it. At that distance, "what time is it?" becomes a surprisingly interesting question.
+Voyager 1 has been hurtling through space since September 5, 1977. It's now over 160 AU (Astronomical Unit, or the Earth-Sun distance) from Earth, or so far away that a radio signal traveling at the speed of light takes more than 23 hours to reach it. 
 
-Voyager Zulu Time (VZT) is an experimental timekeeping system I built that measures time from Voyager 1's perspective. Instead of hours, minutes, and seconds, VZT uses a single decimal unit called an **Arc (Va)** — one full Arc equals exactly 8,833,536 Earth seconds (about 102 days). Time is expressed as a continuously ticking decimal, with each digit representing a progressively smaller slice of time, from deci-arcs (~10 days) down to femto-arcs (~0.88 seconds).
+Voyager Zulu Time (VZT) is an experimental timekeeping system I built that measures time from Voyager 1's perspective (yes, I am nerdy like that). Instead of hours, minutes, and seconds, VZT uses a single decimal unit I made up called an **Arc (Va)**.   One full Arc equals exactly 8,833,536 Earth seconds (about 102 days). Time is expressed as a continuously ticking decimal, with each digit representing a progressively smaller slice of time, from deci-arcs (~10 days) down to femto-arcs (~0.88 seconds).
 
 ## Why I Built It
 
-I've always been fascinated by the idea that our measurement of time is completely arbitrary — hours, minutes, seconds are human conventions tied to Earth's rotation. Voyager 1 doesn't care about any of that. It's been flying in a straight line through interstellar space for nearly 50 years, indifferent to our calendars.
+Honestly, I did it out of curiosity.  Voyager 1 was launched in 1977, and after watching an interesting YouTube video of the furthest human-made object from Earth, I wondered where it would be when I turned 50, or 60 or 80.  There are currently only 5 human-made objects on trajectories out of our solar system.  ***That's it***. Five objects, ever. And there are no current NASA plans to send new spacecraft to interstellar space. 
 
-I wanted to build a clock that felt like *Voyager's* clock — one that started ticking the moment it launched and measures time in units that relate to its journey, not ours. The epoch is the exact launch moment (1977-09-05 12:56:00 UTC), and the base unit is derived from the spacecraft's trajectory.
+The Pioneers are silent, New Horizons is slower and far behind, and the Voyagers are fading. Once the Voyagers go dark, humanity will have zero active presence beyond the heliosphere until someone builds something new.  
 
-Beyond the concept, this was also a fun technical challenge: building a real-time, animated dashboard with live distance calculations, light-time delay, and a twinkling starfield — all running at ~11 frames per second in the browser.
+I've always been fascinated by the idea that our measurement of time is completely arbitrary: hours, minutes, seconds are human conventions tied to Earth's rotation.  Voyager 1 doesn't care about any of that. It's been flying in a straight line through interstellar space for nearly 50 years, indifferent to our calendars.
+
+I wanted to build a clock that felt like *Voyager's* clock; one that started ticking the moment it launched and measures time in units that relate to its journey, not Earth's. The epoch is the exact launch moment (1977-09-05 12:56:00 UTC), and the base unit is derived from the spacecraft's trajectory.
+
+Beyond the concept, this was also a fun technical challenge: building a real-time, animated dashboard with live distance calculations in React.
 
 ## How It Works
 
@@ -56,8 +60,6 @@ The clock below is live. It's calculating VZT right now based on the elapsed sec
 
 ## Source Code
 
-The full React source for this clock is available on [GitHub](https://github.com/zapatify).
+The full React source for this clock is available on [GitHub](https://github.com/zapatify/zapatify.github.io/blob/main/vzt-clock.jsx).
 
 ---
-
-*This project combines my interest in space exploration with frontend development. It's a reminder that even something as fundamental as "time" is just a construct — and building your own version of it is a pretty fun exercise.*

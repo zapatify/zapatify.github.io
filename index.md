@@ -15,7 +15,7 @@ I was once asked in an interview, "What gets you up in the morning?"  My answer,
 
 
 ## About Me (Professionally)
-As Head of Engineering at IOU Financial, I started as Manager, and 3 years later was promoted to VP (I list as Director, because most places will rule me out as overqualified when I say VP) During the seven years I worked there, I grew the engineering organization from 4 engineers to a height of 30+, and lead initiatives in:
+As Head of Engineering at IOU Financial, I started as Manager, and 3 years later was promoted to VP (I list as Director, because most places will rule me out as overqualified when I say VP) During the seven years I worked there, I grew the engineering organization from 4 engineers to a height of 25+, and lead initiatives in:
 
 - Full-stack web application development (Ruby on Rails, React)
 - Financial technology and our home-grown lending platform

@@ -63,4 +63,4 @@ ZappyTime is a sleek, browser-based time tracker for managing multiple projects.
 
 ---
 
-*ZappyTime demonstrates building a practical, self-contained utility app with modern frontend tools — no server required, just open and track.*
+

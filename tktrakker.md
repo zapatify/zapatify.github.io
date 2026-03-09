@@ -177,4 +177,3 @@ TKTrakker has been adopted by gaming communities to:
 
 ---
 
-*TKTrakker demonstrates my ability to build real-time systems, work with third-party APIs, and create tools that engage communities. The project highlights skills in Python, asynchronous programming, and open-source software development.*

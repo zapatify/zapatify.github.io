@@ -143,4 +143,3 @@ The tiered approach allows users to start free and upgrade as needs grow.
 
 ---
 
-*ZappyNotes showcases my ability to build complex, user-facing applications with sophisticated data models, subscription management, and excellent user experience.*

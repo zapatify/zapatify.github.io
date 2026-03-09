@@ -99,4 +99,3 @@ The platform provides immediate, actionable feedback to improve resume success r
 
 ---
 
-*This project demonstrates my ability to build production-ready SaaS applications with modern Rails, integrate third-party services, and create real value for end users.*

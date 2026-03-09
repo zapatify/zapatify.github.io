@@ -226,4 +226,3 @@ Amortizy serves as:
 
 ---
 
-*Amortizy represents my expertise in fintech and demonstrates the ability to extract, refine, and share production-quality code with the Ruby community. This gem has been battle-tested in real lending platforms and continues to serve developers building financial applications.*

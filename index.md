@@ -43,6 +43,7 @@ Each project demonstrates different aspects of modern software development, from
 **Languages & Frameworks:** Ruby on Rails, JavaScript, React, SQL, Python  
 **Infrastructure:** AWS, GCP, Heroku, PostgreSQL, Redis, Docker  
 **Specialties:** Fintech, API Design, Team Leadership, System Architecture
+**AI Tools:** Claude Code, Claude.ai, ChatGPT, GitHub Copilot, Anthropic API
 
 ---
 

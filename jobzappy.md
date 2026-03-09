@@ -44,7 +44,6 @@ JobZappy is a production-ready SaaS application that helps job seekers optimize 
 - **Payments**: Stripe API for subscription management
 - **AI Integration**: Anthropic Claude API
 - **Frontend**: Turbo and Stimulus for reactive UI
-- **Deployment**: [Your deployment platform]
 
 ### Key Implementation Details
 

@@ -11,6 +11,8 @@ A Podcast for Professionals Navigating Unemployment
 {: .fs-6 .fw-300 }
 
 ---
+## Episodes
+<div id='buzzsprout-large-player'></div><script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2574024.js?container_id=buzzsprout-large-player&player=large'></script>
 
 ## Overview
 
@@ -61,8 +63,5 @@ For those whose search extends beyond expectations, this phase addresses the uni
 
 ---
 
-## Episode 1: "You Are Not Your Layoff"
 
-Processing the initial shock of job loss and the emotional rollercoaster of the first week. Drawing parallels to wilderness seasons in scripture and establishing a foundation for the journey ahead.
 
-<div id='buzzsprout-small-player'></div><script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2574024.js?container_id=buzzsprout-small-player&player=small'></script>

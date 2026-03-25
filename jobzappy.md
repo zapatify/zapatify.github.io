@@ -24,7 +24,7 @@ AI-Powered Resume Optimization SaaS Platform
 
 JobZappy is a production-ready SaaS application that helps job seekers optimize their resumes for Applicant Tracking Systems (ATS) using AI. Built with modern Rails 8.1.1, it demonstrates enterprise-level architecture with payment processing, API integration, and user management.
 
-**GitHub:** (not available yet.  My son is still deciding if this is public or if he wants to monetize it)
+**GitHub:** (private repo while I decide whether to make it public)
 
 ## Key Features
 

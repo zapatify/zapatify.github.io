@@ -1,7 +1,7 @@
 ---
 title: Voyager Zulu Time
 layout: default
-nav_order: 7
+nav_order: 5
 ---
 
 # Voyager Zulu Time

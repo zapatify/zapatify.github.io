@@ -1,7 +1,7 @@
 ---
 title: Fear, Faith, and the Forest
 layout: default
-nav_order: 6
+nav_order: 2
 ---
 
 # Fear, Faith, and the Forest

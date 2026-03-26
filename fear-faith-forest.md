@@ -18,7 +18,7 @@ A Podcast for Professionals Navigating Unemployment
 
 Fear, Faith, and the Forest is a podcast series I designed to guide unemployed professionals through the emotional, strategic, and spiritual journey of today's job hunt. Drawing from personal experience navigating my own employment gap, this podcast provides practical wisdom, faith-based encouragement, and actionable strategies for those in career transition.
 
-**Status**: Live — Episode 1 Now Available  
+**Status**: Live!
 **Format**: Audio Podcast  
 **Target Audience**: Professionals facing unemployment or career transition
 

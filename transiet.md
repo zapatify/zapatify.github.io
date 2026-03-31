@@ -22,15 +22,17 @@ Privacy-First Web Analytics for Indie Devs
 
 ## Overview
 
-Transiet is a lightweight web analytics service designed for solo devs, consultants, and career-builders who want to know if anyone is visiting their site. 
+Transiet is a lightweight web analytics service designed for solo devs, small sites, and people who just want to know if anyone is visiting their site. 
 
-It's simple, bare-bones traffic data analysis for $3/month — without the complexity or cookies.
+It's simple, bare-bones traffic data analysis for $3/month — without complexity or cookies.
 
 **Live at:** [https://transiet.com](https://transiet.com)
 
 ## Why I Built This
 
- When I first built this portfolio, I included the link in my job applications. I was curious if anybody was actually clicking on the links (if you're reading this and you're a hiring manager or recruiter, thank you!).  I tried plausible.io but that trial period ran out pretty quickly.  Plausible charges between $7.50-$9.99 a month (depending if you pay monthly or yearly), and I thought it was just a little too much to pay for very basic tracking. I looked around for cheaper alternatives but ultimately decided to build my own, and Transiet was born.  Why the name Transiet?  I bought the domain with another project in mind, but that project never materialized. Since I already owned the domain, and the meaning fit perfectly, it was fate.  
+When I first built this portfolio, I included the link in my job applications. I was curious if anybody was actually clicking on the links (if you're reading this and you're a hiring manager or recruiter, thank you!🙏).  I tried plausible.io but that trial period ran out pretty quick.  Plausible charges $9 a month, but if you pay a year in advance ($90) you can bring it down to $7.50.  I thought it was just a little too much to pay for very basic tracking.  This portfolio isn't a SaaS product. So, I looked around for cheaper alternatives but ultimately decided to build my own, and transiet was born.  
+
+Why the name transiet?  I bought the domain with another project in mind, but that project never materialized. Since I already owned the domain, and the meaning fit perfectly, it was fate.  
 
 ## What Makes It Different
 

@@ -22,7 +22,7 @@ Calculate your daily calories and macro breakdown based on body weight and goals
 
 ## Overview
 
-A simple calculator that tells you how many calories you need per day and how to split them across protein, fat, and carbs. Enter your weight, height, and age, select your activity level, set a weight loss goal (up to 20 lbs), and get your numbers.
+A simple calculator that tells you how many calories you need per day and how to split them across protein, fat, and carbs. Enter your weight, height, and age, select your activity level, set a weight loss goal (up to 10 lbs per month), and get your numbers.
 
 ## Calculator
 
@@ -36,14 +36,14 @@ A simple calculator that tells you how many calories you need per day and how to
 
 **TDEE (Total Daily Energy Expenditure)**: Your BMR multiplied by an activity factor. A sedentary person (x1.2) burns fewer calories than someone who exercises regularly (x1.55) or has a physical job (x1.9). This is your true maintenance number.
 
-**Caloric Deficit**: For every 20 lbs you want to lose, you subtract 500 calories per day from your TDEE. Want to lose 10 lbs? That's a 250 calorie daily deficit. The maximum is 20 lbs (500 calorie deficit) to keep things healthy.
+**Caloric Deficit**: For every 10 lbs you want to lose per month, you subtract 500 calories per day from your TDEE. Want to lose 5 lbs? That's a 250 calorie daily deficit. The cap is 10 lbs per month (500 calorie deficit).
 
 **Macro Split**:
 - **Protein**: 1 gram per pound of body weight. Each gram has 4 calories.
-- **Fat**: 0.3 grams per pound of body weight. Each gram has 9 calories.
+- **Fat**: 0.35 grams per pound of body weight. Each gram has 9 calories.
 - **Carbs**: Whatever calories are left after protein and fat, divided by 4 calories per gram.
 
-### Example (200 lbs, 5'10", age 35, sedentary, 20 lb loss goal)
+### Example (200 lbs, 5'10", age 35, sedentary, 10 lb loss goal)
 
 | | Grams | Calories |
 |---|---|---|
@@ -52,8 +52,8 @@ A simple calculator that tells you how many calories you need per day and how to
 | Deficit | | -500 |
 | **Daily Target** | | **1,656** |
 | Protein | 200g | 800 cal |
-| Fat | 60g | 540 cal |
-| Carbs | 79g | 316 cal |
+| Fat | 70g | 630 cal |
+| Carbs | 57g | 226 cal |
 
 ---
 

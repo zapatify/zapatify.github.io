@@ -17,13 +17,13 @@
 (function() {
   var e = React.createElement, useState = React.useState;
 
-  var DEFICIT_PER_20LBS = 500;
+  var MAX_DEFICIT = 500;
+  var MAX_WEIGHT_LOSS = 10;
   var PROTEIN_G_PER_LB = 1;
-  var FAT_G_PER_LB = 0.3;
+  var FAT_G_PER_LB = 0.35;
   var PROTEIN_CAL_PER_G = 4;
   var FAT_CAL_PER_G = 9;
   var CARB_CAL_PER_G = 4;
-  var MAX_WEIGHT_LOSS = 20;
 
   var ACTIVITY_LEVELS = [
     { key: "sedentary", label: "Sedentary", multiplier: 1.2, desc: "Desk job, little or no exercise" },
@@ -40,7 +40,7 @@
   function calculate(weight, heightInches, age, lossGoal, activityMultiplier) {
     var bmr = calculateBMR(weight, heightInches, age);
     var tdee = bmr * activityMultiplier;
-    var deficit = Math.round((lossGoal / 20) * DEFICIT_PER_20LBS);
+    var deficit = Math.round((lossGoal / MAX_WEIGHT_LOSS) * MAX_DEFICIT);
     var dailyCalories = Math.round(tdee - deficit);
 
     var proteinGrams = Math.round(weight * PROTEIN_G_PER_LB);
@@ -508,7 +508,7 @@
         hasAllInputs ? e("div", { style: styles.inputGroup },
           e("div", { style: styles.sliderContainer },
             e("div", { style: styles.sliderHeader },
-              e("label", { style: styles.label }, "Weight Loss Goal"),
+              e("label", { style: styles.label }, "Weight Loss Goal (over one month)"),
               e("span", { style: styles.sliderValue }, lossGoal + " lbs")
             ),
             e("input", {
@@ -522,10 +522,11 @@
             }),
             e("div", { style: styles.sliderTicks },
               e("span", null, "0"),
-              e("span", null, "5"),
-              e("span", null, "10"),
-              e("span", null, "15"),
-              e("span", null, "20")
+              e("span", null, "2"),
+              e("span", null, "4"),
+              e("span", null, "6"),
+              e("span", null, "8"),
+              e("span", null, "10")
             )
           )
         ) : null
@@ -615,7 +616,7 @@
         ) : null,
 
         e("div", { style: styles.formula },
-          "Protein: 1g/lb x 4 cal / Fat: 0.3g/lb x 9 cal / Carbs: remaining calories / 4 cal"
+          "Protein: 1g/lb x 4 cal / Fat: 0.35g/lb x 9 cal / Carbs: remaining calories / 4 cal"
         )
       ) : null
     );

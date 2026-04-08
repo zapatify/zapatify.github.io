@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macros Calculator</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0f1117; overflow-x: hidden; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+</head>
+<body>
+<div id="macros-root"></div>
+<script>
+(function() {
+  var e = React.createElement, useState = React.useState;
+
+  var DEFICIT_PER_20LBS = 500;
+  var PROTEIN_G_PER_LB = 1;
+  var FAT_G_PER_LB = 0.3;
+  var PROTEIN_CAL_PER_G = 4;
+  var FAT_CAL_PER_G = 9;
+  var CARB_CAL_PER_G = 4;
+  var MAX_WEIGHT_LOSS = 20;
+
+  var ACTIVITY_LEVELS = [
+    { key: "sedentary", label: "Sedentary", multiplier: 1.2, desc: "Desk job, little or no exercise" },
+    { key: "light", label: "Lightly Active", multiplier: 1.375, desc: "Light exercise 1-3 days/week" },
+    { key: "moderate", label: "Moderately Active", multiplier: 1.55, desc: "Moderate exercise 3-5 days/week" },
+    { key: "very", label: "Very Active", multiplier: 1.725, desc: "Hard exercise 6-7 days/week" },
+    { key: "extra", label: "Extra Active", multiplier: 1.9, desc: "Physical job + hard exercise daily" }
+  ];
+
+  function calculateBMR(weight, heightInches, age) {
+    return (4.536 * weight) + (12.7 * heightInches) - (5 * age) + 5;
+  }
+
+  function calculate(weight, heightInches, age, lossGoal, activityMultiplier) {
+    var bmr = calculateBMR(weight, heightInches, age);
+    var tdee = bmr * activityMultiplier;
+    var deficit = Math.round((lossGoal / 20) * DEFICIT_PER_20LBS);
+    var dailyCalories = Math.round(tdee - deficit);
+
+    var proteinGrams = Math.round(weight * PROTEIN_G_PER_LB);
+    var proteinCalories = proteinGrams * PROTEIN_CAL_PER_G;
+
+    var fatGrams = Math.round(weight * FAT_G_PER_LB);
+    var fatCalories = fatGrams * FAT_CAL_PER_G;
+
+    var carbCalories = Math.max(0, dailyCalories - proteinCalories - fatCalories);
+    var carbGrams = Math.round(carbCalories / CARB_CAL_PER_G);
+    carbCalories = Math.round(carbCalories);
+
+    return {
+      bmr: Math.round(bmr),
+      tdee: Math.round(tdee),
+      deficit: deficit,
+      dailyCalories: dailyCalories,
+      proteinGrams: proteinGrams,
+      proteinCalories: proteinCalories,
+      fatGrams: fatGrams,
+      fatCalories: fatCalories,
+      carbGrams: carbGrams,
+      carbCalories: carbCalories
+    };
+  }
+
+  var styles = {
+    container: {
+      fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      background: "linear-gradient(165deg, #0f1117 0%, #1a1d2e 50%, #0f1117 100%)",
+      color: "#e2e8f0",
+      minHeight: "100vh",
+      padding: "clamp(20px, 4vw, 48px)",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    },
+    header: {
+      textAlign: "center",
+      marginBottom: "36px"
+    },
+    title: {
+      fontSize: "clamp(28px, 5vw, 42px)",
+      fontWeight: "700",
+      color: "#f8fafc",
+      letterSpacing: "-0.02em",
+      marginBottom: "8px"
+    },
+    subtitle: {
+      fontSize: "clamp(14px, 2.5vw, 16px)",
+      color: "#94a3b8",
+      fontWeight: "400"
+    },
+    card: {
+      background: "rgba(30, 34, 52, 0.7)",
+      border: "1px solid rgba(148, 163, 184, 0.1)",
+      borderRadius: "16px",
+      padding: "clamp(20px, 3vw, 32px)",
+      width: "100%",
+      maxWidth: "560px",
+      marginBottom: "24px",
+      backdropFilter: "blur(8px)"
+    },
+    sectionLabel: {
+      fontSize: "11px",
+      fontWeight: "600",
+      textTransform: "uppercase",
+      letterSpacing: "0.08em",
+      color: "#64748b",
+      marginBottom: "16px"
+    },
+    inputGroup: {
+      marginBottom: "24px"
+    },
+    label: {
+      display: "block",
+      fontSize: "14px",
+      fontWeight: "500",
+      color: "#cbd5e1",
+      marginBottom: "8px"
+    },
+    bodyRow: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 0.7fr",
+      gap: "16px",
+      alignItems: "start"
+    },
+    fieldGroup: {
+    },
+    fieldLabel: {
+      fontSize: "12px",
+      fontWeight: "500",
+      color: "#94a3b8",
+      marginBottom: "6px"
+    },
+    inputSmall: {
+      width: "100%",
+      padding: "10px 12px",
+      fontSize: "16px",
+      fontWeight: "600",
+      color: "#f8fafc",
+      background: "rgba(15, 17, 23, 0.6)",
+      border: "1px solid rgba(148, 163, 184, 0.2)",
+      borderRadius: "10px",
+      outline: "none",
+      transition: "border-color 0.2s",
+      fontFamily: "'Inter', sans-serif"
+    },
+    heightRow: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "8px"
+    },
+    inputWithUnit: {
+      position: "relative"
+    },
+    inputUnit: {
+      position: "absolute",
+      right: "10px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      fontSize: "12px",
+      color: "#64748b",
+      fontWeight: "500",
+      pointerEvents: "none"
+    },
+    activityGrid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(5, 1fr)",
+      gap: "8px"
+    },
+    activityBtn: function(isActive) {
+      return {
+        padding: "10px 4px",
+        borderRadius: "10px",
+        border: isActive ? "1px solid #6366f1" : "1px solid rgba(148, 163, 184, 0.15)",
+        background: isActive ? "rgba(99, 102, 241, 0.15)" : "rgba(15, 17, 23, 0.5)",
+        color: isActive ? "#a5b4fc" : "#94a3b8",
+        cursor: "pointer",
+        textAlign: "center",
+        transition: "all 0.2s",
+        fontSize: "11px",
+        fontWeight: isActive ? "600" : "500",
+        fontFamily: "'Inter', sans-serif",
+        lineHeight: "1.3"
+      };
+    },
+    activityMultiplier: function(isActive) {
+      return {
+        fontSize: "15px",
+        fontWeight: "700",
+        color: isActive ? "#c7d2fe" : "#cbd5e1",
+        marginBottom: "4px"
+      };
+    },
+    activityDesc: {
+      fontSize: "12px",
+      color: "#64748b",
+      textAlign: "center",
+      marginTop: "10px",
+      fontStyle: "italic"
+    },
+    sliderContainer: {
+      width: "100%"
+    },
+    sliderHeader: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "10px"
+    },
+    sliderValue: {
+      fontSize: "20px",
+      fontWeight: "700",
+      color: "#f8fafc"
+    },
+    slider: {
+      width: "100%",
+      height: "6px",
+      borderRadius: "3px",
+      outline: "none",
+      cursor: "pointer",
+      WebkitAppearance: "none",
+      appearance: "none",
+      background: "#1e2234"
+    },
+    sliderTicks: {
+      display: "flex",
+      justifyContent: "space-between",
+      marginTop: "6px",
+      fontSize: "11px",
+      color: "#475569"
+    },
+    resultsBig: {
+      textAlign: "center",
+      padding: "20px 0"
+    },
+    resultsBigNumber: {
+      fontSize: "clamp(40px, 8vw, 56px)",
+      fontWeight: "800",
+      letterSpacing: "-0.03em",
+      lineHeight: "1",
+      color: "#f8fafc"
+    },
+    resultsBigLabel: {
+      fontSize: "13px",
+      color: "#94a3b8",
+      marginTop: "6px",
+      fontWeight: "500"
+    },
+    divider: {
+      height: "1px",
+      background: "rgba(148, 163, 184, 0.1)",
+      margin: "20px 0"
+    },
+    deficitRow: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "8px 0"
+    },
+    deficitLabel: {
+      fontSize: "14px",
+      color: "#94a3b8"
+    },
+    deficitValue: {
+      fontSize: "14px",
+      fontWeight: "600",
+      color: "#cbd5e1"
+    },
+    macroGrid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: "12px"
+    },
+    macroCard: function(color) {
+      return {
+        background: "rgba(15, 17, 23, 0.5)",
+        border: "1px solid " + color + "33",
+        borderRadius: "12px",
+        padding: "clamp(14px, 2vw, 20px)",
+        textAlign: "center"
+      };
+    },
+    macroBar: function(color) {
+      return {
+        height: "3px",
+        borderRadius: "2px",
+        background: color,
+        marginBottom: "14px",
+        opacity: "0.7"
+      };
+    },
+    macroGrams: function(color) {
+      return {
+        fontSize: "clamp(24px, 4vw, 32px)",
+        fontWeight: "800",
+        color: color,
+        letterSpacing: "-0.02em",
+        lineHeight: "1"
+      };
+    },
+    macroGramsUnit: {
+      fontSize: "14px",
+      fontWeight: "500",
+      opacity: "0.7"
+    },
+    macroName: {
+      fontSize: "12px",
+      fontWeight: "600",
+      textTransform: "uppercase",
+      letterSpacing: "0.06em",
+      color: "#94a3b8",
+      marginTop: "6px",
+      marginBottom: "4px"
+    },
+    macroCals: {
+      fontSize: "13px",
+      color: "#64748b"
+    },
+    splitBar: {
+      display: "flex",
+      height: "8px",
+      borderRadius: "4px",
+      overflow: "hidden",
+      marginTop: "16px",
+      marginBottom: "8px"
+    },
+    splitLabels: {
+      display: "flex",
+      justifyContent: "space-between",
+      fontSize: "11px",
+      color: "#64748b"
+    },
+    formula: {
+      fontSize: "12px",
+      color: "#475569",
+      textAlign: "center",
+      marginTop: "12px",
+      lineHeight: "1.6"
+    }
+  };
+
+  var COLORS = {
+    protein: "#6ee7b7",
+    fat: "#fbbf24",
+    carbs: "#7dd3fc"
+  };
+
+  function MacrosCalculator() {
+    var weightState = useState("");
+    var weight = weightState[0];
+    var setWeight = weightState[1];
+
+    var feetState = useState("");
+    var feet = feetState[0];
+    var setFeet = feetState[1];
+
+    var inchesState = useState("");
+    var inches = inchesState[0];
+    var setInches = inchesState[1];
+
+    var ageState = useState("");
+    var age = ageState[0];
+    var setAge = ageState[1];
+
+    var activityState = useState("sedentary");
+    var activityKey = activityState[0];
+    var setActivityKey = activityState[1];
+
+    var lossState = useState(0);
+    var lossGoal = lossState[0];
+    var setLossGoal = lossState[1];
+
+    var numWeight = parseFloat(weight) || 0;
+    var numFeet = parseInt(feet, 10) || 0;
+    var numInches = parseInt(inches, 10) || 0;
+    var totalInches = (numFeet * 12) + numInches;
+    var numAge = parseInt(age, 10) || 0;
+    var hasAllInputs = numWeight > 0 && totalInches > 0 && numAge > 0;
+
+    var activeLevel = ACTIVITY_LEVELS.find(function(l) { return l.key === activityKey; });
+    var results = hasAllInputs ? calculate(numWeight, totalInches, numAge, lossGoal, activeLevel.multiplier) : null;
+
+    function handleNumericInput(setter) {
+      return function(evt) {
+        var val = evt.target.value;
+        if (val === "" || /^\d*\.?\d*$/.test(val)) {
+          setter(val);
+        }
+      };
+    }
+
+    function handleIntInput(setter) {
+      return function(evt) {
+        var val = evt.target.value;
+        if (val === "" || /^\d*$/.test(val)) {
+          setter(val);
+        }
+      };
+    }
+
+    function handleSliderChange(evt) {
+      setLossGoal(parseInt(evt.target.value, 10));
+    }
+
+    var sliderBackground = "linear-gradient(to right, #6366f1 0%, #6366f1 " + (lossGoal / MAX_WEIGHT_LOSS * 100) + "%, #1e2234 " + (lossGoal / MAX_WEIGHT_LOSS * 100) + "%, #1e2234 100%)";
+
+    return e("div", { style: styles.container },
+      e("div", { style: styles.header },
+        e("h1", { style: styles.title }, "Macros Calculator"),
+        e("p", { style: styles.subtitle }, "Calculate your daily calories and macro breakdown")
+      ),
+
+      e("div", { style: styles.card },
+        e("div", { style: styles.sectionLabel }, "Your Info"),
+
+        e("div", { style: styles.inputGroup },
+          e("div", { style: styles.bodyRow },
+
+            e("div", { style: styles.fieldGroup },
+              e("div", { style: styles.fieldLabel }, "Weight"),
+              e("div", { style: styles.inputWithUnit },
+                e("input", {
+                  type: "text",
+                  inputMode: "decimal",
+                  placeholder: "200",
+                  value: weight,
+                  onChange: handleNumericInput(setWeight),
+                  style: Object.assign({}, styles.inputSmall, { paddingRight: "36px" })
+                }),
+                e("span", { style: styles.inputUnit }, "lbs")
+              )
+            ),
+
+            e("div", { style: styles.fieldGroup },
+              e("div", { style: styles.fieldLabel }, "Height"),
+              e("div", { style: styles.heightRow },
+                e("div", { style: styles.inputWithUnit },
+                  e("input", {
+                    type: "text",
+                    inputMode: "numeric",
+                    placeholder: "5",
+                    value: feet,
+                    onChange: handleIntInput(setFeet),
+                    style: Object.assign({}, styles.inputSmall, { paddingRight: "28px" })
+                  }),
+                  e("span", { style: styles.inputUnit }, "ft")
+                ),
+                e("div", { style: styles.inputWithUnit },
+                  e("input", {
+                    type: "text",
+                    inputMode: "numeric",
+                    placeholder: "10",
+                    value: inches,
+                    onChange: handleIntInput(setInches),
+                    style: Object.assign({}, styles.inputSmall, { paddingRight: "24px" })
+                  }),
+                  e("span", { style: styles.inputUnit }, "in")
+                )
+              )
+            ),
+
+            e("div", { style: styles.fieldGroup },
+              e("div", { style: styles.fieldLabel }, "Age"),
+              e("div", { style: styles.inputWithUnit },
+                e("input", {
+                  type: "text",
+                  inputMode: "numeric",
+                  placeholder: "35",
+                  value: age,
+                  onChange: handleIntInput(setAge),
+                  style: Object.assign({}, styles.inputSmall, { paddingRight: "32px" })
+                }),
+                e("span", { style: styles.inputUnit }, "yrs")
+              )
+            )
+          )
+        ),
+
+        e("div", { style: styles.inputGroup },
+          e("label", { style: styles.label }, "Activity Level"),
+          e("div", { style: styles.activityGrid },
+            ACTIVITY_LEVELS.map(function(level) {
+              var isActive = activityKey === level.key;
+              return e("button", {
+                key: level.key,
+                onClick: function() { setActivityKey(level.key); },
+                style: styles.activityBtn(isActive)
+              },
+                e("div", null, level.label)
+              );
+            })
+          ),
+          e("div", { style: Object.assign({}, styles.formula, { textAlign: "left", marginTop: "14px" }) },
+            ACTIVITY_LEVELS.map(function(level) {
+              return e("div", { key: level.key, style: { marginBottom: "3px" } },
+                e("span", { style: { color: "#64748b" } }, level.label + ": "),
+                e("span", null, level.desc)
+              );
+            })
+          )
+        ),
+
+        hasAllInputs ? e("div", { style: styles.inputGroup },
+          e("div", { style: styles.sliderContainer },
+            e("div", { style: styles.sliderHeader },
+              e("label", { style: styles.label }, "Weight Loss Goal"),
+              e("span", { style: styles.sliderValue }, lossGoal + " lbs")
+            ),
+            e("input", {
+              type: "range",
+              min: "0",
+              max: String(MAX_WEIGHT_LOSS),
+              step: "1",
+              value: lossGoal,
+              onChange: handleSliderChange,
+              style: Object.assign({}, styles.slider, { background: sliderBackground })
+            }),
+            e("div", { style: styles.sliderTicks },
+              e("span", null, "0"),
+              e("span", null, "5"),
+              e("span", null, "10"),
+              e("span", null, "15"),
+              e("span", null, "20")
+            )
+          )
+        ) : null
+      ),
+
+      hasAllInputs && results ? e("div", { style: styles.card },
+        e("div", { style: styles.sectionLabel }, "Daily Calories"),
+        e("div", { style: styles.resultsBig },
+          e("div", { style: styles.resultsBigNumber },
+            results.dailyCalories.toLocaleString()
+          ),
+          e("div", { style: styles.resultsBigLabel }, "calories per day")
+        ),
+        e("div", { style: styles.divider }),
+        e("div", { style: styles.deficitRow },
+          e("span", { style: styles.deficitLabel }, "BMR"),
+          e("span", { style: styles.deficitValue }, results.bmr.toLocaleString() + " cal")
+        ),
+        e("div", { style: styles.deficitRow },
+          e("span", { style: styles.deficitLabel }, "TDEE (x" + activeLevel.multiplier + " " + activeLevel.label.toLowerCase() + ")"),
+          e("span", { style: styles.deficitValue }, results.tdee.toLocaleString() + " cal")
+        ),
+        results.deficit > 0 ? e("div", { style: styles.deficitRow },
+          e("span", { style: styles.deficitLabel }, "Daily deficit"),
+          e("span", { style: Object.assign({}, styles.deficitValue, { color: "#f87171" }) }, "-" + results.deficit + " cal")
+        ) : null,
+        e("div", { style: styles.formula },
+          "BMR = (4.536 x " + numWeight + ") + (12.7 x " + totalInches + "\") - (5 x " + numAge + ") + 5 = " + results.bmr.toLocaleString()
+        )
+      ) : null,
+
+      hasAllInputs && results ? e("div", { style: styles.card },
+        e("div", { style: styles.sectionLabel }, "Macro Breakdown"),
+        e("div", { style: styles.macroGrid },
+          e("div", { style: styles.macroCard(COLORS.protein) },
+            e("div", { style: styles.macroBar(COLORS.protein) }),
+            e("div", { style: styles.macroGrams(COLORS.protein) },
+              results.proteinGrams,
+              e("span", { style: styles.macroGramsUnit }, "g")
+            ),
+            e("div", { style: styles.macroName }, "Protein"),
+            e("div", { style: styles.macroCals }, results.proteinCalories + " cal")
+          ),
+          e("div", { style: styles.macroCard(COLORS.fat) },
+            e("div", { style: styles.macroBar(COLORS.fat) }),
+            e("div", { style: styles.macroGrams(COLORS.fat) },
+              results.fatGrams,
+              e("span", { style: styles.macroGramsUnit }, "g")
+            ),
+            e("div", { style: styles.macroName }, "Fat"),
+            e("div", { style: styles.macroCals }, results.fatCalories + " cal")
+          ),
+          e("div", { style: styles.macroCard(COLORS.carbs) },
+            e("div", { style: styles.macroBar(COLORS.carbs) }),
+            e("div", { style: styles.macroGrams(COLORS.carbs) },
+              results.carbGrams,
+              e("span", { style: styles.macroGramsUnit }, "g")
+            ),
+            e("div", { style: styles.macroName }, "Carbs"),
+            e("div", { style: styles.macroCals }, results.carbCalories + " cal")
+          )
+        ),
+
+        results.dailyCalories > 0 ? e("div", null,
+          e("div", { style: styles.splitBar },
+            e("div", { style: {
+              width: (results.proteinCalories / results.dailyCalories * 100) + "%",
+              background: COLORS.protein,
+              transition: "width 0.3s"
+            }}),
+            e("div", { style: {
+              width: (results.fatCalories / results.dailyCalories * 100) + "%",
+              background: COLORS.fat,
+              transition: "width 0.3s"
+            }}),
+            e("div", { style: {
+              width: (results.carbCalories / results.dailyCalories * 100) + "%",
+              background: COLORS.carbs,
+              transition: "width 0.3s"
+            }})
+          ),
+          e("div", { style: styles.splitLabels },
+            e("span", null, Math.round(results.proteinCalories / results.dailyCalories * 100) + "% protein"),
+            e("span", null, Math.round(results.fatCalories / results.dailyCalories * 100) + "% fat"),
+            e("span", null, Math.round(results.carbCalories / results.dailyCalories * 100) + "% carbs")
+          )
+        ) : null,
+
+        e("div", { style: styles.formula },
+          "Protein: 1g/lb x 4 cal / Fat: 0.3g/lb x 9 cal / Carbs: remaining calories / 4 cal"
+        )
+      ) : null
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("macros-root")).render(e(MacrosCalculator));
+})();
+</script>
+</body>
+</html>

@@ -1,13 +1,13 @@
 ---
 title: ZappyNotes
 layout: default
-nav_order: 6
+nav_order: 7
 ---
 
 # ZappyNotes
 {: .no_toc }
 
-Comprehensive Note-Taking Application
+Open-source, self-hosted note-taking built on Rails 8.
 {: .fs-6 .fw-300 }
 
 ---
@@ -22,124 +22,55 @@ Comprehensive Note-Taking Application
 
 ## Overview
 
-ZappyNotes is a full-featured note-taking application designed as a comprehensive alternative to Evernote. It provides a robust platform for organizing thoughts, documents, and ideas with a flexible three-tier subscription model.
+ZappyNotes is a self-hosted note-taking app I built when my Evernote subscription jumped in price. It's a clean Rails 8 codebase with a WYSIWYG markdown editor, notebook organization, auto-save, image uploads, and a tiered subscription scaffold wired up to Stripe.
 
-**Live Demo:** I'm moving off Heroku.  As soon as I do, I'll bring this back  
-**GitHub:** [https://github.com/zapatify/zappynotes](https://github.com/zapatify/zappynotes)
+I've since put the project on hiatus and released it as **open source under the MIT license**. There's no hosted version to sign up for — anyone who wants the features can fork the repo and run their own.
 
-## Key Features
+**GitHub:** [github.com/zapatify/zappynotes](https://github.com/zapatify/zappynotes)
 
-- **Rich Text Editing**: Advanced WYSIWYG editor for formatting notes
-- **Organization System**: Notebooks, tags, and hierarchical organization
-- **Search Functionality**: Full-text search across all notes
-- **Three-Tier Subscription**: Free, Pro, and Enterprise pricing models
-- **Cross-Device Sync**: Access notes from anywhere
-- **Markdown Support**: Native markdown formatting with preview
-- **File Attachments**: Support for images and documents
-- **Sharing & Collaboration**: Share notes and notebooks with others
+## Why It's Open Source Now
 
-## Technical Architecture
+I built ZappyNotes for myself, and once I shipped Marksmith and shifted focus to other projects, keeping a SaaS note-taking app online stopped making sense. Rather than let it rot on a Heroku dyno, I open-sourced the whole thing — Stripe billing, subscription tiers, admin panel, and all. It's a working starting point for anyone who wants to host their own notes app or learn how a tiered Rails SaaS is wired together end to end.
 
-### Technology Stack
+## What's in the Box
 
-- **Backend**: Ruby on Rails
-- **Database**: PostgreSQL with full-text search
-- **Frontend**: Modern JavaScript with Stimulus
-- **Storage**: Active Storage for file attachments
-- **Search**: PostgreSQL full-text search with pg_search
-- **Deployment**: [Your deployment platform]
+- **WYSIWYG Markdown Editor** via Toast UI — real-time formatting with paste-or-upload image support
+- **Auto-Save** — notes save on blur and on a 60-second timer
+- **Notebook Organization** — color-coded notebooks for grouping notes
+- **Tiered Subscriptions** — Free / Plus / Pro plans with notebook, note, and storage limits enforced server-side; Stripe billing already wired up
+- **Email Confirmation** — verify email addresses on signup to prevent abuse
+- **Rate Limiting** — Rack::Attack rules for DDoS protection
+- **Admin Panel** — Motor Admin for full database management
+- **Responsive Design** — works on desktop and mobile
 
-### Subscription Tiers
+## Tech Stack
 
-**Free Tier**
-- Up to 50 notes
-- Basic text formatting
-- 25MB storage
+- **Framework:** Ruby on Rails 8.1.1
+- **Ruby:** 3.3.8
+- **Database:** PostgreSQL 18
+- **CSS:** Tailwind CSS v4
+- **JavaScript:** Importmap, Stimulus, Turbo
+- **Editor:** Toast UI Editor
+- **UI Components:** Flowbite
+- **Payments:** Stripe
+- **Testing:** RSpec, FactoryBot
+- **Security:** Rack::Attack
+- **License:** MIT
 
-**Pro Tier** ($9.99/month)
-- Unlimited notes
-- Advanced formatting
-- 10GB storage
-- Priority support
+## Use It as a Starting Point
 
-**Enterprise Tier** ($29.99/month)
-- Everything in Pro
-- Team collaboration
-- 100GB storage
-- Admin controls
-- SLA guarantee
+The codebase is structured so you can fork it and either run it as-is or strip out the parts you don't need. A few common starting points:
+
+- **Want a personal notes app?** Disable Stripe, set everyone to the Pro plan, and you have a free self-hosted Evernote alternative
+- **Want a SaaS template?** The subscription tiers, billing flow, usage tracking, and admin panel are all wired up — swap out the "notes" domain for whatever you're building
+- **Want a Rails 8 reference project?** It's a small but complete app that exercises Importmap, Turbo, Stimulus, ActionMailer, ActiveStorage, Stripe webhooks, and Rack::Attack
 
 ## Development Highlights
 
 This project demonstrates:
 
-1. **Complex Data Modeling**: Hierarchical note organization with tags and notebooks
-2. **Subscription Management**: Multi-tier pricing with feature gating
-3. **Rich Text Editing**: Implementation of WYSIWYG editor with custom toolbar
-4. **Full-Text Search**: Efficient search implementation using PostgreSQL features
-5. **File Management**: Robust file upload and storage system
-6. **Responsive Design**: Mobile-first approach for cross-device compatibility
-
-## Technical Implementation
-
-### Database Design
-
-Optimized schema with:
-- Efficient indexing for fast search
-- Polymorphic associations for flexible tagging
-- Soft deletes for data recovery
-- Audit trails for version history
-
-### Search Engine
-
-- PostgreSQL full-text search with ranking
-- Fuzzy matching for typo tolerance
-- Tag and notebook filtering
-- Real-time search suggestions
-
-### Editor Features
-
-- Rich text formatting (bold, italic, lists, headers)
-- Code block syntax highlighting
-- Embedded images and media
-- Markdown shortcuts
-- Auto-save functionality
-
-## Business Model
-
-ZappyNotes employs a freemium SaaS model:
-
-- **Free tier** attracts users and demonstrates value
-- **Pro tier** targets individual power users
-- **Enterprise tier** serves teams and organizations
-
-The tiered approach allows users to start free and upgrade as needs grow.
-
-## Challenges Solved
-
-- **Editor Performance**: Optimized rendering for large documents
-- **Search Speed**: Implemented efficient indexing strategies
-- **Data Migration**: Smooth import from competitors (Evernote, OneNote)
-- **Conflict Resolution**: Handled concurrent edits with conflict detection
-- **Storage Optimization**: Efficient file storage with deduplication
-
-## User Experience Focus
-
-- **Keyboard Shortcuts**: Power user efficiency
-- **Offline Support**: Service workers for offline access
-- **Quick Capture**: Fast note creation from anywhere in the app
-- **Smart Organization**: Automatic tagging suggestions
-- **Customization**: Themes and layout preferences
-
-## Future Roadmap
-
-- Mobile native apps (iOS/Android)
-- API for third-party integrations
-- OCR for image text extraction
-- Voice note recording and transcription
-- AI-powered note summarization
-- Template library
-- Web clipper browser extension
-
----
-
+1. **Full SaaS scaffolding in Rails 8** — subscriptions, billing, admin, rate limiting, email confirmation
+2. **Per-tier resource enforcement** — server-side limits on notebooks, notes per notebook, and storage
+3. **Stripe integration** — checkout, webhooks, plan changes, cancellation
+4. **Toast UI Editor integration** — markdown editor with image paste and auto-save
+5. **Open-source release discipline** — MIT license, contribution guidelines, and a codebase clean enough to hand off

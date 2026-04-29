@@ -8,14 +8,14 @@ nav_order: 1
 
 Welcome! 
 
-I'm **Rich Zapata**, an experienced engineering leader with a passion for building scalable fintech solutions and elegant software architectures. With over seven years leading engineering teams and a strong foundation in Ruby on Rails development, I focus on creating robust, production-ready applications that solve real-world problems.
+I'm **Rich Zapata**, an experienced engineering leader with a passion for building scalable fintech solutions and elegant software architectures. With over seven years leading engineering teams and a strong foundation in Ruby on Rails development, I focus on creating robust, production-ready applications that solve real-world (and my) problems.
 
 ## About Me (Personally)
-I was once asked in an interview, "What gets you up in the morning?"  My answer, "my kids".  I mean that both figuratively and literally.  I am father of two amazing boys who keep life very interesting.  I also love all things baseball (both boys play), gaming and gaming theory, cooking, and as any developer would tell you, building apps. 😊
+I was once asked in an interview, "What gets you up in the morning?"  My answer, "my kids".  I mean that both figuratively and literally.  I am father of two amazing boys who keep life very interesting.  I also love all things baseball (both boys play), gaming and gaming theory, cooking, and as any developer would tell you (and as you can see below), building apps. 😊
 
 
 ## About Me (Professionally)
-As Head of Engineering at IOU Financial, I started as Manager, and 3 years later was promoted to VP (I list as Director, because most places will rule me out as overqualified when I say VP) During the seven years I worked there, I grew the engineering organization from 4 engineers to a height of 25+, and lead initiatives in:
+As Head of Engineering at IOU Financial, I started as Manager back in 2018, and 3 years later was promoted to VP (I list as Director, because most places will rule me out as overqualified when I say VP) During the seven years I worked there, I grew the engineering organization from 4 engineers to a height of 25+, and lead initiatives in:
 
 - Full-stack web application development (Ruby on Rails, React)
 - Financial technology and our home-grown lending platform
@@ -23,7 +23,7 @@ As Head of Engineering at IOU Financial, I started as Manager, and 3 years later
 - Cloud infrastructure and DevOps (AWS)
 - API design and microservices architecture
 
-I'm currently exploring new opportunities in engineering leadership while building tools and sharing knowledge with the developer community.
+I'm currently performing contract software/data engineering roles (both with the assistance of AI) and exploring new opportunities in engineering leadership while building tools and sharing knowledge with the developer community.
 
 ## Featured Projects
 
@@ -42,10 +42,11 @@ Each project demonstrates different aspects of modern software development, from
 
 ## Technical Expertise
 
+**AI Tools:** Claude Code, Claude.ai, ChatGPT, GitHub Copilot, Anthropic API
 **Languages & Frameworks:** Ruby on Rails, JavaScript, React, SQL, Python  
 **Infrastructure:** AWS, GCP, Heroku, PostgreSQL, Redis, Docker  
 **Specialties:** Fintech, API Design, Team Leadership, System Architecture
-**AI Tools:** Claude Code, Claude.ai, ChatGPT, GitHub Copilot, Anthropic API
+
 
 ---
 

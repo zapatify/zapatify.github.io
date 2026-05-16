@@ -1,3 +1,15 @@
+<script>
+  (function () {
+    var stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) {}
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = stored === 'dark' || stored === 'light' ? stored : (prefersDark ? 'dark' : 'light');
+    window.__initialTheme = theme;
+    if (theme === 'dark' && typeof jtd !== 'undefined' && jtd.setTheme) {
+      jtd.setTheme('dark');
+    }
+  })();
+</script>
 <script defer src="https://transiet.com/track.js"
   data-site="4edf98c0-844d-49e4-8b14-fcbc69aaea55">
 </script>

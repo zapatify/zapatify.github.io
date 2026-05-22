@@ -29,6 +29,6 @@ back_to_top_text: "Back to top"
 # External links
 aux_links:
   GitHub Profile: "https://github.com/zapatify"
-  LinkedIn: "#" # Add your LinkedIn URL here
+  LinkedIn: "https://www.linkedin.com/in/zapatar/"
 
 aux_links_new_tab: true

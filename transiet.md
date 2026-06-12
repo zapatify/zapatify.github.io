@@ -24,7 +24,7 @@ Privacy-First Web Analytics for Indie Devs
 
 Transiet is a lightweight web analytics service designed for solo devs, small sites, and people who just want to know if anyone is visiting their site. 
 
-It's simple, bare-bones traffic data analysis for $3/month — without complexity or cookies.
+It's simple, bare-bones traffic data analysis for $3/month, without complexity or cookies.
 
 **Live at:** [https://transiet.com](https://transiet.com)
 
@@ -48,7 +48,7 @@ Why the name transiet?  I bought the domain with another project in mind, but th
 ## Key Features
 
 - **Real-Time Dashboard**: Live visitor counts, page views, and trends via server-rendered Hotwire
-- **Privacy by Architecture**: SHA256 visitor hashing with daily rotation — no PII stored
+- **Privacy by Architecture**: SHA256 visitor hashing with daily rotation, no PII stored
 - **Multi-Site Support**: Track up to 3 sites per account
 - **Traffic Insights**: Top pages, referrer sources, device/browser breakdown, country-level geo
 - **Chartkick Visualizations**: Clean, interactive charts powered by Chartkick + Groupdate
@@ -58,7 +58,7 @@ Why the name transiet?  I bought the domain with another project in mind, but th
 
 ### Ingestion Pipeline
 
-When a visitor loads a tracked page, the ~1KB script fires a `POST /ingest` request. The server fingerprints the visitor using a daily-rotating SHA256 hash (no raw IP or user agent stored), resolves the session, parses geolocation from MaxMind's local database, and records the page view — all without cookies or client-side storage.
+When a visitor loads a tracked page, the ~1KB script fires a `POST /ingest` request. The server fingerprints the visitor using a daily-rotating SHA256 hash (no raw IP or user agent stored), resolves the session, parses geolocation from MaxMind's local database, and records the page view, all without cookies or client-side storage.
 
 ### Privacy Architecture
 

@@ -7,7 +7,7 @@ nav_order: 6
 # Amortizy
 {: .no_toc }
 
-A Ruby gem for loan amortization schedules — and now, commercial financing disclosures.
+A Ruby gem for loan amortization schedules, and now, commercial financing disclosures.
 {: .fs-6 .fw-300 }
 
 ---
@@ -22,14 +22,14 @@ A Ruby gem for loan amortization schedules — and now, commercial financing dis
 
 ## Overview
 
-Amortizy is a Ruby gem for generating loan amortization schedules. It supports monthly, bi-weekly, weekly, and daily payment frequencies; grace periods; interest-only payment phases; federal bank holidays; and multiple interest calculation methods. As of v2.1.0, it also includes a `Disclosure` module that computes the data elements required by California SB 1235 and similar state commercial financing disclosure laws — including APR by the Regulation Z actuarial method.
+Amortizy is a Ruby gem for generating loan amortization schedules. It supports monthly, bi-weekly, weekly, and daily payment frequencies; grace periods; interest-only payment phases; federal bank holidays; and multiple interest calculation methods. As of v2.1.0, it also includes a `Disclosure` module that computes the data elements required by California SB 1235 and similar state commercial financing disclosure laws, including APR by the Regulation Z actuarial method.
 
 **RubyGems:** [rubygems.org/gems/amortizy](https://rubygems.org/gems/amortizy)
 **GitHub:** [github.com/zapatify/amortizy](https://github.com/zapatify/amortizy)
 
 ## Why I Built This
 
-One of the challenges we faced at IOU Financial is that our amortization engine wasn't flexible — and every feature the business asked for required a hefty lift that never quite reached the top of the priority list. I wanted to see if I could build a feature-rich amortization engine from the ground up, and release it as a gem that any SMB lender could drop in and use today.
+One of the challenges we faced at IOU Financial is that our amortization engine wasn't flexible, and every feature the business asked for required a hefty lift that never quite reached the top of the priority list. I wanted to see if I could build a feature-rich amortization engine from the ground up, and release it as a gem that any SMB lender could drop in and use today.
 
 The v2.x line is the result of treating it like a real product: dynamic payment counts instead of a hardcoded lookup table, a clean public API, a CLI, and a disclosure module for the regulatory side of commercial lending that most off-the-shelf calculators ignore entirely.
 
@@ -44,7 +44,7 @@ The v2.x line is the result of treating it like a real product: dynamic payment 
 - **Bank day calculations**: Skip weekends and US Federal Reserve holidays automatically (powered by the `holidays` gem)
 - **Multiple output formats**: Console table or CSV export
 - **Public API**: Frozen schedule arrays, summary hashes, and convenience methods (`#total_interest`, `#total_paid`, `#payment_amount`, `#end_date`)
-- **Commercial financing disclosure module**: Reg Z APR, finance charge, amount financed, recipient funds, term display, average monthly cost, and prepayment info — see below
+- **Commercial financing disclosure module**: Reg Z APR, finance charge, amount financed, recipient funds, term display, average monthly cost, and prepayment info (see below)
 - **Interactive CLI**: `amortizy` command for running examples or entering loans manually
 
 ## Installation
@@ -127,7 +127,7 @@ schedule = Amortizy::AmortizationSchedule.new(
 
 ## Commercial Financing Disclosures (v2.1.0)
 
-A growing number of states (California SB 1235, New York, Georgia, and counting) now require commercial lenders to issue Truth-in-Lending–style disclosures on small business loans. The math is non-trivial — APR alone requires the Regulation Z actuarial method, which is a Newton-Raphson solve, not a closed-form formula.
+A growing number of states (California SB 1235, New York, Georgia, and counting) now require commercial lenders to issue Truth-in-Lending–style disclosures on small business loans. The math is non-trivial. APR alone requires the Regulation Z actuarial method, which is a Newton-Raphson solve, not a closed-form formula.
 
 The `Amortizy::Disclosure` class wraps an `AmortizationSchedule` and computes nine disclosure elements with the regulation-correct labels:
 
@@ -144,7 +144,7 @@ disclosure.average_monthly_cost  # => nil (monthly frequency)
 disclosure.prepayment            # => { has_non_interest_charges: false, ... }
 ```
 
-Output is available as a flat hash (`#to_h`) or with regulation-correct labels per CA SB 1235 §910 (`#to_labeled_h`). Values are jurisdiction-agnostic — computed per the most stringent methodology, usable for any state's commercial financing disclosure requirements.
+Output is available as a flat hash (`#to_h`) or with regulation-correct labels per CA SB 1235 §910 (`#to_labeled_h`). Values are jurisdiction-agnostic, computed per the most stringent methodology and usable for any state's commercial financing disclosure requirements.
 
 The gem computes the numbers; your application handles the document layout.
 
@@ -175,7 +175,7 @@ Finance charge is derived from the Reg Z identity:
 finance_charge = total_payment_amount - amount_financed
 ```
 
-This guarantees the three core disclosure values are always internally consistent — no risk of presenting numbers that don't add up.
+This guarantees the three core disclosure values are always internally consistent, with no risk of presenting numbers that don't add up.
 
 ## Development Highlights
 

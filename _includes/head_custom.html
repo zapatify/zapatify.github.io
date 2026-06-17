@@ -13,3 +13,43 @@
 <script defer src="https://transiet.com/track.js"
   data-site="4edf98c0-844d-49e4-8b14-fcbc69aaea55">
 </script>
+<style>
+  .external-link-icon {
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    margin-left: 0.15em;
+    vertical-align: baseline;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>
+<script>
+  /* Open external (off-site) content links in a new tab and mark them with an icon. */
+  (function () {
+    function markExternalLinks() {
+      var root = document.getElementById('main-content');
+      if (!root) return;
+      var icon = '<svg class="external-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+      var links = root.querySelectorAll('a[href]');
+      for (var i = 0; i < links.length; i++) {
+        var a = links[i];
+        if (a.hostname && a.hostname !== window.location.hostname && /^https?:$/.test(a.protocol)) {
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener noreferrer');
+          if (!a.querySelector('.external-link-icon')) {
+            a.insertAdjacentHTML('beforeend', icon);
+          }
+        }
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', markExternalLinks);
+    } else {
+      markExternalLinks();
+    }
+  })();
+</script>

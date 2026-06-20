@@ -24,7 +24,7 @@ A Ruby gem for loan amortization schedules, and now, commercial financing disclo
 
 Amortizy is a Ruby gem for generating loan amortization schedules. It supports monthly, bi-weekly, weekly, and daily payment frequencies; grace periods; interest-only payment phases; federal bank holidays; and multiple interest calculation methods. As of v2.1.0, it also includes a `Disclosure` module that computes the data elements required by California SB 1235 and similar state commercial financing disclosure laws, including APR by the Regulation Z actuarial method.
 
-**RubyGems:** [rubygems.org/gems/amortizy](https://rubygems.org/gems/amortizy)
+**RubyGems:** [rubygems.org/gems/amortizy](https://rubygems.org/gems/amortizy)<br>
 **GitHub:** [github.com/zapatify/amortizy](https://github.com/zapatify/amortizy)
 
 ## Why I Built This

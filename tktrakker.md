@@ -25,7 +25,6 @@ Discord Bot for Gaming Analytics
 TKTrakker is a Discord bot designed to track team kills and player statistics in online Battle Royale/Extraction games (such as PUBG, of EFT). Built for real-time data collection and analysis, it provides teams with instant feedback on performance and coordination.
 
 **GitHub:** [https://github.com/zapatify/TKTrakker](https://github.com/zapatify/TKTrakker)
-**Status**: Production-ready, deployed on Heroku (but moving off soon). 
 
 ## Key Features
 

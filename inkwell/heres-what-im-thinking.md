@@ -82,7 +82,7 @@ The special sauce between product and engineering isn't a process, or a ceremony
 
 That's also how I try to run things now, because I've been on both sides of the fence. I've had it thrown over me, and for a stretch I held the seat that does the throwing, and I know which one builds something people are proud of. I'd rather open a project with *here's what I'm thinking* than close it with *here's what you're building.* I'd rather have the demanding partner who knows my craft than the polished document that doesn't know me at all. I want the room where engineering is in it from day one, because that's the only room I've ever seen the good version happen in.
 
-Back then, it took me a second to say all this. Today, it doesn't.
+Back then, the answer took me only a second to find. But that second held months of memory, the good projects and the bad ones, every version of the special sauce I'd lived on both sides of the fence. The pause was short, but what it brought back with it wasn't.
 
 ---
 

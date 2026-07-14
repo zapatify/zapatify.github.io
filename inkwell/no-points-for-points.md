@@ -4,7 +4,7 @@ layout: default
 parent: The Inkwell
 nav_order: 3
 date: 2026-07-13
-summary: "There are no points for points."
+summary: "How I gauge engineers without a single metric."
 description: "How to actually gauge an engineer's performance: delivery, craft, and impact, not story points, t-shirt sizes, or hours logged, and why DORA metrics measure a system, not a person."
 permalink: /inkwell/no-points-for-points/
 ---

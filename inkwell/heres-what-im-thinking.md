@@ -3,6 +3,7 @@ title: "Here's What I'm Thinking..."
 layout: default
 parent: The Inkwell
 nav_order: 2
+date: 2026-06-19
 summary: The special sauce between product and engineering.
 description: "What makes the product and engineering relationship work: shared authorship of decisions while they are still soft, why involving engineers early prevents scope explosions, and the cost of throwing requirements over the fence."
 permalink: /inkwell/heres-what-im-thinking/

@@ -3,6 +3,7 @@ title: Have Desk, Will Commute
 layout: default
 parent: The Inkwell
 nav_order: 1
+date: 2026-06-17
 summary: I want my commute back.
 description: "A case for returning to the office. What the return-to-office debate misses: mentorship, workplace friendship, and the hidden costs of remote work for young engineers."
 permalink: /inkwell/have-desk-will-commute/

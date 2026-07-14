@@ -98,4 +98,19 @@
       });
     })();
   </script>
+
+  <script>
+    (function () {
+      document.addEventListener('click', function (e) {
+        var expander = e.target.closest && e.target.closest('.nav-list-expander');
+        if (!expander) return;
+        var item = expander.parentElement;
+        if (!item) return;
+        var link = item.querySelector(':scope > a.nav-list-link');
+        if (link && link.href) {
+          window.location.href = link.href;
+        }
+      });
+    })();
+  </script>
 </footer>

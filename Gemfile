@@ -4,7 +4,7 @@ gem "jekyll", "~> 4.3.4"
 gem "just-the-docs", "0.10.0"
 
 # Required for GitHub Pages
-gem "webrick", "~> 1.8"
+gem "webrick", "~> 1.9"
 
 group :jekyll_plugins do
   gem "jekyll-seo-tag", "~> 2.8"

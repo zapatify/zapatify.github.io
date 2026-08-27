@@ -15,6 +15,17 @@
   data-site="4edf98c0-844d-49e4-8b14-fcbc69aaea55">
 </script>
 <style>
+  /* The Inkwell's articles stay visible in the sidebar on every page —
+     no expander click required. The expander arrow is pinned to its
+     expanded rotation to match. */
+  .site-nav .nav-list-item:has(> a.nav-list-link[href="/inkwell/"]) > .nav-list {
+    display: block;
+  }
+  .site-nav .nav-list-item:has(> a.nav-list-link[href="/inkwell/"]) > .nav-list-expander svg {
+    transform: rotate(-90deg);
+  }
+</style>
+<style>
   .external-link-icon {
     display: inline-block;
     width: 0.7em;

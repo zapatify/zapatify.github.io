@@ -19,8 +19,8 @@ bundle exec jekyll build    # Build site to _site/
 - **Theme:** `just-the-docs` gem v0.10.0 (gem-based, not vendored)
 - **Jekyll:** 4.3.4
 - **Pages:** Top-level `.md` files with YAML frontmatter become site pages. Navigation order is controlled by `nav_order` in frontmatter.
-- **Customizations:** `_includes/head_custom.html` injects Plausible Analytics. No custom layouts or other overrides.
-- **Analytics:** Plausible (not Google Analytics)
+- **Customizations:** `_includes/head_custom.html` injects the Transiet analytics snippet, theme bootstrapping, and external-link handling. No custom layouts or other overrides.
+- **Analytics:** Transiet (transiet.com/track.js — Rich's own product; not Plausible, not Google Analytics)
 - **CI:** Two GitHub Actions workflows — `pages.yml` (build + deploy to GitHub Pages) and `ci.yml` (build-only, runs on PRs)
 
 ## Adding a New Page
